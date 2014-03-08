@@ -2,6 +2,7 @@ package aula20130308.singleton.p3.testes;
 
 import aula20130308.singleton.p3.testes.*;
 import aula20130308.singleton.p3.Universo;
+import java.awt.Rectangle;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.After;
@@ -21,22 +22,11 @@ public class TesteDoUniverso {
     }
     
     @Test
-    public void testarSeUnviversoEhSingleton() {
-        //Universo u1 = new Universo();
-        //Universo u2 = new Universo();
-        Universo u1 = Universo.criarUniverso();
-        Universo u2 = Universo.criarUniverso();
-        assertSame(
-                "As referências para Universo deveriam"
-                + " apontar para a mesma instância!",
-                u1, u2);
-    }
-    @Test
-    public void testarSeUnviversoEhSingletonUsandoSet() {
+    public void testarSeUnviversoEhSingletonComNoMaximoQuatroInstâncias() {
         Set<Universo> universos = new HashSet<Universo>();
         for (int i = 0; i < 100; i++) {
-            universos.add( Universo.criarUniverso() );
+            universos.add( Universo.getInstance() );
         }
-        assertEquals("Só deveria existir UM!", 1, universos.size());
+        assertTrue("Só podem existir no máximo 4 universos!", 4 <= universos.size());
     }
 }

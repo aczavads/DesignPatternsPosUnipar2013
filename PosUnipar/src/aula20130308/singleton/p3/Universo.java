@@ -16,7 +16,7 @@ public class Universo {
     private Universo() {
         
     }
-    public synchronized static Universo criarUniverso() {
+    public synchronized static Universo getInstance() {
         int pos = (int)(System.nanoTime()%4);
         System.out.println(">> universo: " + pos);
         if (instancias[pos] == null) {

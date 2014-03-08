@@ -23,8 +23,8 @@ public class TesteDoUniverso {
     public void testarSeUnviversoEhSingleton() {
         //Universo u1 = new Universo();
         //Universo u2 = new Universo();
-        Universo u1 = Universo.criarUniverso();
-        Universo u2 = Universo.criarUniverso();
+        Universo u1 = Universo.getInstance();
+        Universo u2 = Universo.getInstance();
         assertSame(
                 "As referências para Universo deveriam"
                 + " apontar para a mesma instância!",
@@ -34,7 +34,7 @@ public class TesteDoUniverso {
     public void testarSeUnviversoEhSingletonUsandoSet() {
         Set<Universo> universos = new HashSet<Universo>();
         for (int i = 0; i < 100; i++) {
-            universos.add( Universo.criarUniverso() );
+            universos.add( Universo.getInstance() );
         }
         assertEquals("Só deveria existir UM!", 1, universos.size());
     }

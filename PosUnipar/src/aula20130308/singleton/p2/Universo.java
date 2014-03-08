@@ -14,7 +14,7 @@ public class Universo {
     private Universo() {
         
     }
-    public synchronized static Universo criarUniverso() {
+    public synchronized static Universo getInstance() {
         if (instancia == null) {
             instancia = new Universo();
         }
