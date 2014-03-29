@@ -19,11 +19,18 @@ public abstract class LoggerFactory {
             props.load(is);
             is.close();            
             String tipoDoLogger = props.getProperty("tipoDoLogger");
+            /*
             if (tipoDoLogger.equalsIgnoreCase("NULL")) {
                 return new NullLogger();
             } else if (tipoDoLogger.equalsIgnoreCase("CONSOLE")) {
                 return new ConsoleLogger();
+            } else if (tipoDoLogger.equalsIgnoreCase("WINDOW")) {
+                return new WiindowLogger();
             }
+            */
+            Class classeDoLogger = Class.forName(tipoDoLogger);
+            return (Logger)classeDoLogger.newInstance();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

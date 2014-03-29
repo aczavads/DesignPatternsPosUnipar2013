@@ -17,7 +17,7 @@ public class TestarBuilderDeConexaoBD {
     public TestarBuilderDeConexaoBD() {
     }
     
-     @Test
+     //@Test
      public void testarConexao() {
          ConexaoBD c = (new ConexaoBD.Builder())
                  .user("postgres")
@@ -30,7 +30,7 @@ public class TestarBuilderDeConexaoBD {
          assertNotNull(c);         
          assertFalse(c.isClosed());
      }
-     @Test
+     //@Test
      public void testarConexaoComSubclasseParaPostgreSQL() {
          ConexaoBD c = (new ConexaoBD.BuilderPostgreSQL()).build();  
          assertNotNull(c);         
