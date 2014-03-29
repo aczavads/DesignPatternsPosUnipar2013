@@ -1,6 +1,7 @@
 package aula20130329.composite.p1.testes;
 
-import aula20130329.composite.p1.ComissaoGenerosa;
+import aula20130329.composite.p1.CalculoComposto;
+import aula20130329.composite.p1.CalculoGeneroso;
 import aula20130329.composite.p1.Venda;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,8 +20,8 @@ public class TesteDeCalculoDeComissaoComposto {
     public TesteDeCalculoDeComissaoComposto() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void before() {
         primeiraVenda = new Venda(200.20);
     }
     
@@ -32,11 +33,26 @@ public class TesteDeCalculoDeComissaoComposto {
      }
      @Test
      public void testarCalculoComissaoGenerosa() {
-         primeiraVenda.setCalculoDeComissao(new ComissaoGenerosa());
+         primeiraVenda.setCalculoDeComissao(new CalculoGeneroso());
          Double comissao = primeiraVenda.getComissao();
          assertEquals("O valor da comissão deveria ser zero!", 
                  primeiraVenda.getValor()*0.1, 
                  comissao, 
                  0.00);
+     }
+     @Test
+     public void testarCalculoComissaoComposto() {
+         CalculoComposto cc = new CalculoComposto();
+         cc.addCalculoDeComissao(new CalculoGeneroso());
+         cc.addCalculoDeComissao(new CalculoGeneroso());
+         cc.addCalculoDeComissao(new CalculoGeneroso());
+         
+         primeiraVenda.setCalculoDeComissao(cc);
+         
+         Double comissao = primeiraVenda.getComissao();
+         assertEquals("O valor da comissão deveria ser zero!", 
+                 primeiraVenda.getValor()*0.3, 
+                 comissao, 
+                 0.01);
      }
 }
